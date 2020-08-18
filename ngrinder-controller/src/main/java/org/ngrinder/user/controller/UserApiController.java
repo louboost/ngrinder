@@ -1,14 +1,6 @@
 package org.ngrinder.user.controller;
 
-import static java.util.stream.Collectors.toList;
-import static org.ngrinder.common.constant.ControllerConstants.NGRINDER_INITIAL_ADMIN_USERID;
-import static org.ngrinder.common.constant.WebConstants.JSON_SUCCESS;
-import static org.ngrinder.common.util.CollectionUtils.buildMap;
-import static org.ngrinder.common.util.ObjectUtils.defaultIfNull;
-import static org.ngrinder.common.util.Preconditions.*;
-
 import lombok.RequiredArgsConstructor;
-
 import org.apache.commons.lang.StringUtils;
 import org.ngrinder.infra.config.Config;
 import org.ngrinder.model.Permission;
@@ -28,11 +20,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.toList;
+import static org.ngrinder.common.constant.ControllerConstants.NGRINDER_INITIAL_ADMIN_USERID;
+import static org.ngrinder.common.constant.WebConstants.JSON_SUCCESS;
+import static org.ngrinder.common.util.CollectionUtils.buildMap;
+import static org.ngrinder.common.util.ObjectUtils.defaultIfNull;
+import static org.ngrinder.common.util.Preconditions.*;
+import static org.springframework.data.domain.Sort.Direction.ASC;
+import static org.springframework.data.domain.Sort.by;
+
 @RestController
 @RequestMapping("/user/api")
 @RequiredArgsConstructor
 public class UserApiController {
-	private static final Sort DEFAULT_SORT = new Sort(Sort.Direction.ASC, "userName");
+	private static final Sort DEFAULT_SORT = by(ASC, "userName");
 
 	private final Config config;
 
